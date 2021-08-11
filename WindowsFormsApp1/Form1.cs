@@ -104,10 +104,14 @@ namespace WindowsFormsApp1
         }
         private Task DoSomethingUpdateAsync()
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
            {
+               //if (Thread.CurrentThread.IsBackground)
+               //{
+               //    Print("IsBackground "+ Thread.CurrentThread.IsBackground);
+               //}
                Print("Call DoSomethingUpdateAsync() on background");
-               _waiter.WaitAsync();//執行後回到主緒
+             await  _waiter.WaitAsync();//執行後回到主緒
                label1.Text = "updating safe....";
            });
         }
